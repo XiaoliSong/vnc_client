@@ -1,0 +1,38 @@
+table{
+	border:solid 1px black;
+	margin:0;
+	border-collapse:collapse;
+	border-spacing:50;
+}
+/*¿ØÖÆcellspacing*/
+
+table td,th{
+	text-align:center;
+	border-top:dotted 1px black;
+	padding:10px 30px;
+}                                                                
+/*¿ØÖÆcellpadding*/
+
+#former-page{
+	visibility:hidden;
+	margin-right:50px;
+}
+
+#next-page{
+	visibility:hidden;
+	margin-left:50px;
+}
+
+#back_to_all{
+	margin-right:50px;
+}
+
+#back_to_self{
+	margin-left:50px;
+}
+
+
+#noti{
+	font-size:20px;
+	color:red;
+}

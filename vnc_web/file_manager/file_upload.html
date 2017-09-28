@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="width=320, initial-scale=1"/>
+	<title>上传文件</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	
+	<style type="text/css">
+		body {
+			
+			text-align: center;
+			margin: 0;
+			padding: 0;
+			font-family: sans-serif;
+			color: #555;
+		}
+	</style>
+</head>
+<body>
+	<div>
+		<form action="file_upload.php" method="POST" enctype="multipart/form-data">
+			<input type="text" id="id" name="id" placeholder="id" style="display:none"/>
+			<input type="password" id="pw" name="pw" placeholder="pw" style="display:none"/>
+			<label for="file">文件名：</label>
+			<input type="file" name="file" id="file"/><br>
+			<br>
+			<input type="submit" name="submit" value="提交上传">
+		</form>
+	</div>
+	
+	<script>
+		function get_query_string(name){
+			var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+			var r = window.location.search.substr(1).match(reg);
+			if(r!=null) return  unescape(r[2]); 
+			return null;
+		}
+		document.getElementById("id").value=get_query_string("id");
+		document.getElementById("pw").value=get_query_string("pw");
+	</script>
+</body>
+</html>

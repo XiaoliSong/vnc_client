@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<title>文件管理登录</title>
+	<meta charset="utf-8" />
+	<meta name=viewport content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
+	<link rel="stylesheet" href="./index.css" type="text/css" />
+</head>
+<body>
+	<div id="main">
+		<div id="login">
+			<h1><a href="./">文件管理</a></h1>  
+			<form>
+				<input type="text" id="id" name="id" placeholder="账号" onkeypress="clearNotification();"/>
+				<input type="password" id="pw" name="pw" placeholder="密码" onkeypress="clearNotification();"/>
+			</form>
+			<button onclick="login_public()">登录公共文件</button>
+			<br />
+			<button onclick="login_person()">登录个人文件</button>
+			<br />
+			<a href="changepw.html">修改密码</a>
+			<p id="notification"></p>
+		</div>
+	</div>
+	<script src="./sha1.js"></script>
+	<script src="./login.js"></script>
+</body>
+</html>

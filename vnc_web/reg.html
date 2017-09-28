@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<title>注册新用户</title>
+	<meta charset="utf-8" />
+	<meta name=viewport content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
+	<link rel="stylesheet" href="./login.css" type="text/css" />
+</head>
+<body>
+	<div id="main">
+		<div id="login">
+			<h1><a href="./">Vnc Viewer</a></h1>  
+			<form>
+				<input type="text" id="id" name="id" placeholder="新帐号" onkeypress="clearNotification();"/>
+				<input type="password" id="pw" name="pw" placeholder="密码" />
+				<input type="password" id="reg_pw" name="reg_pw" placeholder="注册码" />
+			</form>
+			
+			<button onclick="reg()">注册</button>
+			<p id="notification"></p>
+		</div>
+	</div>
+	<script src="./sha1.js"></script>
+	<script src="./reg.js"></script>
+</body>
+</html>

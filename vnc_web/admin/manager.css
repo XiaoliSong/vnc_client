@@ -1,0 +1,38 @@
+input{
+	text-align:center;
+	font-size:16px;
+	color:blue;
+	width:200px;
+	height:25px;
+	margin-bottom:10px;
+}
+#add_area{
+	margin:0 auto;
+	width:500px;
+	height:180px;
+	background:white;
+}
+
+#delete_area{
+	margin:0 auto;
+	width:500px;
+	height:120px;
+	background:white;
+}
+
+#search_area{
+	margin:0 auto;
+	width:500px;
+	height:120px;
+	background:white;
+}
+
+.fun_btn{
+	font-size:16px;
+	background:#eee;
+	padding:5px 25px;
+}
+.fun_btn:hover{
+	cursor:pointer;
+	background:#bbb;
+}

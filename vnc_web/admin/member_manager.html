@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<title>用户操作</title>
+	<meta charset="utf-8" />
+	<meta name=viewport content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
+	<link rel="stylesheet" href="./public.css" type="text/css" />
+	<link rel="stylesheet" href="./manager.css" type="text/css" />
+</head>
+<body>
+	<div id="main">
+		<div id="fun_switch">
+			<a id="to_member_list" href="#">用户列表</a>
+			<a id="to_member_manager" href="#">用户操作</a>
+			<a id="to_admin_list" href="#">管理员列表</a>
+			<a id="to_admin_manager" href="#">管理员操作</a>
+		</div>
+		
+		<div id="add_area">
+			<p>添加用户</p>
+			用户名：<input type="" id="add_id"/> <br/>
+			&nbsp&nbsp密码：<input type="" id="add_pw"/> <br/>
+			<button onclick="add()" class="fun_btn">添加</button>
+		</div>
+		
+		<div id="delete_area">
+			<p>删除用户</p>
+			<input type="" id="delete_id" placeholder="要删除的帐号"/> <br/>
+			<button onclick="delete_member()" class="fun_btn">删除</button>
+		</div>
+		
+		<div id="search_area">
+			<p>查找用户</p>
+			<input type="" id="search_id" placeholder="要查找的帐号"/> <br/>
+			<button onclick="search()" class="fun_btn">查找</button>
+		</div>
+		
+		<p id="noti"></p>
+	</div>
+	
+	<script src="./public.js"></script>
+	<script src="./sha1.js"></script>
+	<script src="./member_manager.js"></script>
+</body>
+</html>

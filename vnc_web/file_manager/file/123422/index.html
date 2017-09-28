@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<title>Vnc 登录</title>
+	<meta charset="utf-8" />
+	<meta name=viewport content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
+	<link rel="stylesheet" href="./login.css" type="text/css" />
+</head>
+<body>
+	<div id="main">
+		<div id="login">
+			<h1><a href="./>Vnc Viewer</a></h1>  
+			<form>
+				<input type="text" id="IP" name="IP" placeholder="IP地址" onkeypress="clearNotification();"/>
+				<input type="password" id="PW" name="PW" placeholder="密码" onkeypress="clearNotification();"/>
+			</form>
+			<button onclick="login()">登录查看</button>
+			<br />
+			<button onclick="login_file()">登录文件管理</button>
+			<p id="notification"></p>
+		</div>
+	</div>
+	<script src="./sha1.js"></script>
+	<script src="./login.js"></script>
+</body>
+</html>

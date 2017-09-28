@@ -1,0 +1,25 @@
+<form action="file.html" method="POST" id="login_form">
+	<input type="text" id="ip" name="ip" placeholder="IP" />
+	<input type="password" id="pw" name="pw" placeholder="pw" />
+	<button id="btn">submit</button>
+</form>
+
+<script src="sha1.js"></script>
+<script>
+	function get_query_string(name){
+		var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+		var r = window.location.search.substr(1).match(reg);
+		if(r!=null) return  unescape(r[2]); 
+		return null;
+	}
+	var id=get_query_string("id");
+	var pw=get_query_string("pw");
+	pw=hex_sha1(pw);
+	var self=get_query_string("self");
+	if(self==0){
+		location.href="./file_public.html?id="+id+"&pw="+pw+"&page=0";
+	}
+	else{
+		location.href="./file_person.html?id="+id+"&pw="+pw+"&to_see_id="+id+"&page=0";
+	}
+</script>

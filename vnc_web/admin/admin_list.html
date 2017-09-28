@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<title>管理员列表</title>
+	<meta charset="utf-8" />
+	<meta name=viewport content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
+	<link rel="stylesheet" href="./public.css" type="text/css" />
+</head>
+<body>
+	<div id="main">
+		<div id="fun_switch">
+			<a id="to_member_list" href="#">用户列表</a>
+			<a id="to_member_manager" href="#">用户操作</a>
+			<a id="to_admin_list" href="#">管理员列表</a>
+			<a id="to_admin_manager" href="#">管理员操作</a>
+		</div>
+		
+		<table id="list">
+			<tr>
+				<th>管理员名</th>
+				<th>注册时间</th>
+				<th>简介</th>
+			</tr>
+			
+		</table>
+		
+		<nav id="pagination">
+			<a href="#" id="former-page">« 上一页</a>
+			<span id="page_noti"></span>
+			<a href="#" id="next-page">下一页 »</a>
+		</nav>
+		
+		<p id="noti"></p>
+	</div>
+	
+	<script src="./public.js"></script>
+	<script src="./admin_list.js"></script>
+</body>
+</html>

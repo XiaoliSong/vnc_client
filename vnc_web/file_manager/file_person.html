@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<title>个人文件</title>
+	<meta charset="utf-8" />
+	<meta name=viewport content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
+	<link rel="stylesheet" href="./file.css" type="text/css" />
+</head>
+<body>
+	<div align='center'>
+		<iframe id="upload_iframe" height="120px">
+		
+		</iframe>
+		
+		<p>
+			<a href="#" id="back_to_all">公共文件</a>
+			<a href="#" id="back_to_self">个人文件</a>
+		</p>
+			
+		<table id="file_table">
+			<tr id="file_th">
+				<th>日期</th>
+				<th>上传人</th>
+				<th>文件</th>
+			</tr>
+		</table>
+			
+		<nav id="pagination">
+			<p>
+				<a href="#" id="former-page">« 上一页</a>
+				<span id="page_noti"></span>
+				<a href="#" id="next-page">下一页 »</a>
+			</p>
+		</nav>
+		
+		<p id="noti">
+		</p>
+		
+	</div>
+	
+	<script src="file_person.js"></script>
+</body>
+</html>

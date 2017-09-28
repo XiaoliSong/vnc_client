@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<title>管理员登录</title>
+	<meta charset="utf-8" />
+	<meta name=viewport content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
+	<link rel="stylesheet" href="./index.css" type="text/css" />
+</head>
+<body>
+	<div id="main">
+		<div id="login">
+			<h1><a href="http://li1996.cn">管理界面</a></h1>  
+			<form>
+				<input type="text" id="id" name="id" placeholder="账号" onkeypress="clearNotification();"/>
+				<input type="password" id="pw" name="pw" placeholder="密码" onkeypress="clearNotification();"/>
+			</form>
+			<button onclick="login()">登录</button>
+			<br />
+			<a href="changepw.html">修改密码</a>
+			<p id="notification"></p>
+		</div>
+	</div>
+	
+	<script src="sha1.js"></script>
+	
+	<script>
+		function login(){
+			var id=document.getElementById("id").value;
+			var pw=document.getElementById("pw").value;
+			pw=hex_sha1(pw);
+			location.href="./member_list.html?id="+id+"&pw="+pw;
+		}
+		function clearNotification(){
+			document.getElementById("notification").innerHTML="";
+		}
+		document.onkeydown=function(event){
+			var e = event || window.event || arguments.callee.caller.arguments[0];
+			if(e && e.keyCode==13){ // enter 键
+				login();
+			}
+		}; 
+	</script>
+</body>
+</html>

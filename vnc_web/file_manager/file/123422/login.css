@@ -1,0 +1,46 @@
+body{
+	background:#eff0f4;
+}
+#login{
+	position:absolute;
+	top:50%;
+	left:50%;
+	width:300px;
+	height:300px;
+	margin:-200px 0 0 -150px;
+	text-align:center;
+}
+
+#login h1 a{
+	text-decoration:none;
+}
+#login h1 a:hover{
+	opacity:0.7;
+}
+
+#IP{
+	display:block;
+	width:300px;
+	height:30px;
+}
+#PW{
+	margin:20px 0;
+	display:block;
+	width:300px;
+	height:30px;
+}
+
+#login button{
+	display:block;
+	background:#11AAFF;
+	width:302px;
+	border:none;
+	height:40px;
+	cursor:pointer;
+}
+#login button:hover{
+	opacity:0.7;
+}
+#notification{
+	color:red;
+}
