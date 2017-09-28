@@ -1,0 +1,4 @@
+<RCC>
+    <qresource prefix="vnc_client">
+    </qresource>
+</RCC>

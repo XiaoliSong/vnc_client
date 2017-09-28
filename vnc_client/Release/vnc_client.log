@@ -1,0 +1,29 @@
+﻿C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V140\Microsoft.CppBuild.targets(392,5): warning MSB8028: The intermediate directory (Release\) contains files shared from another project (QtVnc.vcxproj).  This can lead to incorrect clean and rebuild behavior.
+  Uic'ing vnc_client.ui...
+  Moc'ing vnc_app.h...
+  Moc'ing msg_client.h...
+  Moc'ing member.h...
+  Moc'ing login_dialog.h...
+  Moc'ing app.h...
+  Rcc'ing vnc_client.qrc...
+RCC : warning : No resources in 'F:\鎴戠殑鏂囨。\Visual Studio 2015\Projects\Qt\vnc_client\vnc_client\vnc_client.qrc'.
+  
+  app.cpp
+  encoder.cpp
+  moc_app.cpp
+  moc_login_dialog.cpp
+  moc_member.cpp
+  moc_msg_client.cpp
+  moc_vnc_app.cpp
+  grabber.cpp
+  login_dialog.cpp
+  main.cpp
+  member.cpp
+  msg_client.cpp
+  parse.cpp
+  timer.cpp
+  vnc_app.cpp
+vnc_app.cpp(99): warning C4838: 从“int”转换到“unsigned short”需要收缩转换
+  正在生成代码...
+  qrc_vnc_client.cpp
+  vnc_client.vcxproj -> F:\我的文档\Visual Studio 2015\Projects\Qt\vnc_client\Win32\Release\vnc_client.exe
