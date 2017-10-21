@@ -1,9 +1,9 @@
 #include "member.h"
 
-Member::Member(QString id, QString vnc_url, QWidget *parent):QDialog(parent)
+Member::Member(QString id, QString vnc_web_url, QWidget *parent):QDialog(parent)
 {
 	this->id = id;
-	this->vnc_url = vnc_url;
+	this->vnc_web_url = vnc_web_url;
 	id_label= new QLabel(this);
 	id_label->setText(id);
 	id_label->setStyleSheet("color:red;");
@@ -49,7 +49,7 @@ void Member::view()
 		QMessageBox::information(this, QString("申请查看"), QString("已经发送查看请求！"), QMessageBox::NoButton);
 	}
 	else {
-		QDesktopServices::openUrl(vnc_url+"&to_see_id="+id+"&way=view");
+		QDesktopServices::openUrl(vnc_web_url +"&to_see_id="+id+"&way=view");
 	}
 }
 
@@ -61,7 +61,7 @@ void Member::control()
 		QMessageBox::information(this, QString("申请控制"), QString("已经发送控制请求！"), QMessageBox::NoButton);
 	}
 	else {
-		QDesktopServices::openUrl(vnc_url + "&to_see_id=" + id + "&way=control");
+		QDesktopServices::openUrl(vnc_web_url + "&to_see_id=" + id + "&way=control");
 	}
 }
 
@@ -100,6 +100,19 @@ void Member::push_control()
 	this->is_push_control = !this->is_push_control;
 }
 
+void Member::set_view_enabled()
+{
+	this->is_push_view = true;
+	this->push_view_btn->setText(QString("关闭查看"));
+}
+
+void Member::set_control_enabled()
+{
+	this->is_push_view = true;
+	this->push_view_btn->setText(QString("关闭查看"));
+	this->is_push_control = true;
+	this->push_control_btn->setText(QString("关闭控制"));
+}
 
 void Member::recv_msg(QString msg)
 {

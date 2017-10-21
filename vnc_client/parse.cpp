@@ -15,3 +15,8 @@ QString get_content(QString msg)
 	content = msg.right(msg.length() - index - 1);
 	return content;
 }
+
+QString get_color_string(QString str, QString color)
+{
+	return QString("<font color = " + color + ">" + str + "</font>");
+}

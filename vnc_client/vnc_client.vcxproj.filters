@@ -115,6 +115,9 @@
     <ClCompile Include="member.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="log.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="vnc_client.ui">
@@ -401,6 +404,12 @@
     <ClInclude Include="ffmpeg\include\inttypes.h">
       <Filter>ffmpeg</Filter>
     </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="log.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Library Include="ffmpeg\lib\avcodec.lib">
@@ -412,5 +421,14 @@
     <Library Include="ffmpeg\lib\swscale.lib">
       <Filter>ffmpeg</Filter>
     </Library>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="logo.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="logo.ico" />
+    <Image Include="LauncherIco.ico" />
   </ItemGroup>
 </Project>

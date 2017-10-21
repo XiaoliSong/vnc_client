@@ -1,0 +1,6 @@
+Info: File:() Line:(0) (2017-10-21 15:47:43 Sat) program start
+Warning: File:() Line:(0) (2017-10-21 15:47:43 Sat) QSslSocket: cannot call unresolved function d2i_DHparams
+Warning: File:() Line:(0) (2017-10-21 15:47:43 Sat) QSslSocket: cannot call unresolved function DH_free
+Warning: File:() Line:(0) (2017-10-21 15:47:43 Sat) QObject::connect: signal not found in QWebSocket
+Warning: File:() Line:(0) (2017-10-21 15:47:43 Sat) QObject::connect: signal not found in Login_dialog
+Warning: File:() Line:(0) (2017-10-21 15:48:33 Sat) QObject::connect: signal not found in QWebSocket

@@ -1,0 +1,58 @@
+Info: File:() Line:(0) (2017-10-21 21:13:27 Sat) program start
+Info: File:() Line:(0) (2017-10-21 21:13:27 Sat) read config successfully
+Info: File:() Line:(0) (2017-10-21 21:13:27 Sat) success:msg_client connected to the server
+Info: File:() Line:(0) (2017-10-21 21:13:27 Sat) msg_client connected
+Info: File:() Line:(0) (2017-10-21 21:13:30 Sat) wirte config successfully
+Info: File:() Line:(0) (2017-10-21 21:13:30 Sat) login is called successfully
+Info: File:() Line:(0) (2017-10-21 21:13:30 Sat) vnc_app:connected
+Info: File:() Line:(0) (2017-10-21 21:13:30 Sat) vnc_app recvied text:pass
+Info: File:() Line:(0) (2017-10-21 21:13:31 Sat) msg_client_send success:getlist;
+Info: File:() Line:(0) (2017-10-21 21:13:31 Sat) error:login msg
+Info: File:() Line:(0) (2017-10-21 21:13:31 Sat) msg_client_recv success:login;passlist;1234;12345;
+Info: File:() Line:(0) (2017-10-21 21:13:31 Sat) msg_client_send success:getlist;
+Info: File:() Line:(0) (2017-10-21 21:13:31 Sat) msg_client_recv success:list;1234;12345;
+Info: File:() Line:(0) (2017-10-21 21:13:31 Sat) vnc_app:start to share
+Info: File:() Line:(0) (2017-10-21 21:13:31 Sat) vnc_app:start thread
+Info: File:() Line:(0) (2017-10-21 21:13:32 Sat) vnc_app:stop to share
+Info: File:() Line:(0) (2017-10-21 21:13:32 Sat) vnc_app:end thread
+Info: File:() Line:(0) (2017-10-21 21:13:35 Sat) msg_client_send success:getlist;
+Info: File:() Line:(0) (2017-10-21 21:13:35 Sat) msg_client_recv success:list;1234;12345;
+Info: File:() Line:(0) (2017-10-21 21:13:36 Sat) msg_client_recv success:outer;1234
+Info: File:() Line:(0) (2017-10-21 21:13:38 Sat) vnc_app:start to share
+Info: File:() Line:(0) (2017-10-21 21:13:38 Sat) vnc_app:start thread
+Info: File:() Line:(0) (2017-10-21 21:13:38 Sat) vnc_app:stop to share
+Info: File:() Line:(0) (2017-10-21 21:13:38 Sat) vnc_app:end thread
+Info: File:() Line:(0) (2017-10-21 21:13:40 Sat) msg_client_send success:getlist;
+Info: File:() Line:(0) (2017-10-21 21:13:40 Sat) msg_client_recv success:list;12345;
+Info: File:() Line:(0) (2017-10-21 21:13:45 Sat) msg_client_recv success:newer;1234
+Info: File:() Line:(0) (2017-10-21 21:13:46 Sat) msg_client_send success:getlist;
+Info: File:() Line:(0) (2017-10-21 21:13:46 Sat) 
+Info: File:() Line:(0) (2017-10-21 21:13:46 Sat) msg_client_recv success:list;12345;1234;
+Info: File:() Line:(0) (2017-10-21 21:13:54 Sat) vnc_app:start to share
+Info: File:() Line:(0) (2017-10-21 21:13:54 Sat) vnc_app:start thread
+Info: File:() Line:(0) (2017-10-21 21:13:55 Sat) vnc_app:stop to share
+Info: File:() Line:(0) (2017-10-21 21:13:55 Sat) vnc_app:end thread
+Info: File:() Line:(0) (2017-10-21 21:14:24 Sat) vnc_app:start to share
+Info: File:() Line:(0) (2017-10-21 21:14:24 Sat) vnc_app:start thread
+Info: File:() Line:(0) (2017-10-21 21:14:25 Sat) vnc_app:stop to share
+Info: File:() Line:(0) (2017-10-21 21:14:25 Sat) vnc_app:end thread
+Info: File:() Line:(0) (2017-10-21 21:15:53 Sat) vnc_app:start to share
+Info: File:() Line:(0) (2017-10-21 21:15:53 Sat) vnc_app:start thread
+Info: File:() Line:(0) (2017-10-21 21:16:21 Sat) vnc_app:stop to share
+Info: File:() Line:(0) (2017-10-21 21:16:21 Sat) vnc_app:end thread
+Info: File:() Line:(0) (2017-10-21 21:18:24 Sat) vnc_app:start to share
+Info: File:() Line:(0) (2017-10-21 21:18:24 Sat) vnc_app:start thread
+Info: File:() Line:(0) (2017-10-21 21:18:31 Sat) vnc_app:stop to share
+Info: File:() Line:(0) (2017-10-21 21:18:31 Sat) vnc_app:end thread
+Info: File:() Line:(0) (2017-10-21 21:18:32 Sat) vnc_app:start to share
+Info: File:() Line:(0) (2017-10-21 21:18:32 Sat) vnc_app:start thread
+Info: File:() Line:(0) (2017-10-21 21:18:39 Sat) vnc_app:stop to share
+Info: File:() Line:(0) (2017-10-21 21:18:39 Sat) vnc_app:end thread
+Info: File:() Line:(0) (2017-10-21 21:18:41 Sat) vnc_app:start to share
+Info: File:() Line:(0) (2017-10-21 21:18:41 Sat) vnc_app:start thread
+Info: File:() Line:(0) (2017-10-21 21:18:58 Sat) vnc_app:stop to share
+Info: File:() Line:(0) (2017-10-21 21:18:58 Sat) vnc_app:end thread
+Info: File:() Line:(0) (2017-10-21 21:19:06 Sat) vnc_app:closed
+Info: File:() Line:(0) (2017-10-21 21:19:06 Sat) msg_client_recv success:login;pass
+Info: File:() Line:(0) (2017-10-21 21:19:06 Sat) error:msg_client can't connect to the server
+Info: File:() Line:(0) (2017-10-21 21:19:06 Sat) msg_client closed

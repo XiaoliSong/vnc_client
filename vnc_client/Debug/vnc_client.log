@@ -1,2 +1,5 @@
-﻿  vnc_client.vcxproj -> F:\我的文档\Visual Studio 2015\Projects\Qt\vnc_client\Win32\Debug\vnc_client.exe
-  vnc_client.vcxproj -> F:\我的文档\Visual Studio 2015\Projects\Qt\vnc_client\Win32\Debug\vnc_client.pdb (Full PDB)
+﻿  log.cpp
+  main.cpp
+  正在生成代码...
+  vnc_client.vcxproj -> F:\Study\编程\QtVnc\vnc_client\Win32\Debug\vnc_client.exe
+  vnc_client.vcxproj -> F:\Study\编程\QtVnc\vnc_client\Win32\Debug\vnc_client.pdb (Full PDB)

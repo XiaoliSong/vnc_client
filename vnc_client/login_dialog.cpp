@@ -21,8 +21,7 @@ Login_dialog::Login_dialog(QWidget *parent) :QDialog(parent)
 	remmber_btn->setText(QString("记住密码"));
 
 	noti_label = new QLabel(this);
-	noti_label->setText(QString("未连接服务器"));
-	noti_label->setStyleSheet("color:red;");
+	noti_label->setText(get_color_string("未连接服务器","red"));
 
 	QGridLayout *layout = new QGridLayout(this);
 	layout->setSpacing(30);
@@ -41,125 +40,76 @@ Login_dialog::Login_dialog(QWidget *parent) :QDialog(parent)
 	connect(login_btn, &QPushButton::clicked, this, &Login_dialog::login);
 }
 
-bool is_ip_address(QString ip)
+void Login_dialog::read_config()
 {
-	QRegExp rx2("(//d+)(//.)(//d+)(//.)(//d+)(//.)(//d +)");
-
-	int pos = rx2.indexIn(ip);
-
-	if (pos>-1)
-	{
-		for (int i = 0; i<4; i++)
-		{
-			if (rx2.cap(i * 2 + 1).toInt() >= 255)
-			{
-				return false;
-			}
-		}
-
-		if (rx2.cap(7).toInt() == 0)
-		{
-			return false;
-		}
-
-		if (rx2.cap(7).toInt() == 0)
-		{
-
-			return false;
-		}
-	}
-	else{
-		return false;
-	}
-
-	return true;
-}
-
-void Login_dialog::init()
-{
-	ifstream file;
-	file.open("config.ini", ios::in);
-
-	if (!file.is_open()) {
-		QMessageBox box(QMessageBox::Warning, "失败", "读取配置文件失败！");
+	QSettings *config_ini_read = new QSettings("config.ini", QSettings::IniFormat);
+	if (config_ini_read->status() != 0) {
+		QMessageBox box(QMessageBox::Warning, "失败", "读取配置文件config.ini失败！");
 		box.setStandardButtons(QMessageBox::Ok | QMessageBox::Cancel);
 		box.setButtonText(QMessageBox::Ok, QString("确 定"));
 		box.setButtonText(QMessageBox::Cancel, QString("取 消"));
 		box.exec();
-		return;
+		delete config_ini_read;
+		exit(0);
 	}
-	int count = 0;
-	std::string strLine;
-	while (getline(file, strLine))
-	{
-		
-		if (!strLine.empty()) {
-			if (count == 0) {
-				url = QString(strLine.data());
-				url = url.remove("url=");
-			}
-			if (count == 1) {
-				msg_url = QString(strLine.data());
-				msg_url = msg_url.remove("msg_port=");
-				msg_port = msg_url;
-				msg_url = msg_url.prepend(":");
-				msg_url = msg_url.prepend(url);
-				msg_url = msg_url.prepend("ws://");
-			}
-			if (count == 2) {
-				vnc_url = QString(strLine.data());
-				vnc_url = vnc_url.remove("vnc_port=");
-				vnc_port = vnc_url;
-				vnc_url = vnc_url.prepend(":");
-				vnc_url = vnc_url.prepend(url);
-				vnc_url = vnc_url.prepend("ws://");
-			}
-			if (count == 3) {
-				id = QString(strLine.data());
-				id = id.remove("id=");
-				id_edit->setText(id);
-			}
-			if (count == 4) {
-				pw = QString(strLine.data());
-				pw = pw.remove("pw=");
-				pw_edit->setText(pw);
-				if (pw == "") {
-					remmber_btn->setChecked(false);
-				}
-				else {
-					remmber_btn->setChecked(true);
-				}
-			}
-		}
-		count++;
+	address = config_ini_read->value("/server/address").toString();
+	msg_ws_port = config_ini_read->value("/server/msg_port").toString();
+	vnc_ws_port = config_ini_read->value("/server/vnc_port").toString();
+	id = config_ini_read->value("/user/id").toString();
+	pw = config_ini_read->value("/user/pw").toString();
+	delete config_ini_read;
+
+	if (address == "" || msg_ws_port == "" || vnc_ws_port == "") {
+		QMessageBox box(QMessageBox::Warning, "失败", "配置文件config.ini的server段出错！");
+		box.setStandardButtons(QMessageBox::Ok | QMessageBox::Cancel);
+		box.setButtonText(QMessageBox::Ok, QString("确 定"));
+		box.setButtonText(QMessageBox::Cancel, QString("取 消"));
+		box.exec();
+		exit(0);
 	}
-	file.close();
+
+	msg_ws_url = QString("ws://").append(address).append(":").append(msg_ws_port);
+	vnc_ws_url= QString("ws://").append(address).append(":").append(vnc_ws_port);
+
+	web_url = "http://";
+	web_url = web_url.append(address);
+
+	id_edit->setText(id);
+	pw_edit->setText(pw);
+	if (pw == "") {
+		remmber_btn->setChecked(false);
+	}
+	else {
+		remmber_btn->setChecked(true);
+	}
+	qInfo("read config successfully");
 }
 
 void Login_dialog::write_config()
 {
-	ofstream file;
-	file.open("config.ini", ios::out);
-	if (!file.is_open()) {
-		QMessageBox box(QMessageBox::Warning, "失败", "保存配置文件失败！");
+	QSettings *config_ini_write = new QSettings("config.ini", QSettings::IniFormat);
+	if (config_ini_write->status() != 0) {
+		QMessageBox box(QMessageBox::Warning, "失败", "写入配置文件config.ini失败！");
 		box.setStandardButtons(QMessageBox::Ok | QMessageBox::Cancel);
 		box.setButtonText(QMessageBox::Ok, QString("确 定"));
 		box.setButtonText(QMessageBox::Cancel, QString("取 消"));
 		box.exec();
-
-		exit(0);
+		delete config_ini_write;
+		return;
 	}
-	file << "url=" << url.toStdString().c_str() << endl;
-	file << "msg_port=" << msg_port.toStdString().c_str() << endl;
-	file << "vnc_port=" << vnc_port.toStdString().c_str() << endl;
-	file << "id=" << id_edit->text().toStdString().c_str() << endl;
+	
+	config_ini_write->setValue("/server/address",address.toStdString().c_str());
+	config_ini_write->setValue("/server/msg_port",msg_ws_port.toStdString().c_str());
+	config_ini_write->setValue("/server/vnc_port", vnc_ws_port.toStdString().c_str());
+	config_ini_write->setValue("/user/id",id.toStdString().c_str());
 	if (remmber_btn->isChecked()) {
-		file << "pw=" << pw.toStdString().c_str() << endl;
+		config_ini_write->setValue("/user/pw",pw.toStdString().c_str());
 	}
 	else {
-		file << "pw=" << endl;
+		config_ini_write->setValue("/user/pw", QString("").toStdString().c_str());
 	}
-	file.close();
+	delete config_ini_write;
+	qInfo("wirte config successfully");
 }
 
 void Login_dialog::login()
@@ -179,6 +129,7 @@ void Login_dialog::login()
 
 	write_config();
 	emit(to_login(id, pw));
+	qInfo("login is called successfully");
 }
 
 
@@ -187,23 +138,26 @@ void Login_dialog::on_msg_client(QString msg)
 	if (get_fun(msg) == "connect") {
 		if (get_content(msg) == "pass") {
 			login_btn->setEnabled(true);
-			noti_label->setText("已连接上服务器");
+			noti_label->setText(get_color_string("已连接上服务器", "green"));
+			qInfo("success:msg_client connected to the server");
 		}
 		else {
-			noti_label->setText("连接服务器失败");
+			noti_label->setText(get_color_string("连接服务器失败", "red"));
+			qInfo("error:msg_client can't connect to the server");
 		}
 		return;
 	}
 
 	if (get_fun(msg) == "login") {
 		if (get_content(msg) == "pass") {
-			noti_label->setText("登录成功");
+			noti_label->setText(get_color_string("登录成功", "green"));
+
 			accept();
 			App app(0);
-			app.set_info(id, pw, vnc_url);
+			app.set_info(id, pw, web_url);
 
 			Vnc_app vnc_app(0);
-			vnc_app.connect_login(id, pw, vnc_url);
+			vnc_app.connect_login(id, pw, vnc_ws_url);
 
 			QObject::connect(&app, &App::run_stop, &vnc_app, &Vnc_app::onRunStop);
 			QObject::connect(&vnc_app, &Vnc_app::to_app, &app, &App::on_vnc_app);
@@ -212,27 +166,28 @@ void Login_dialog::on_msg_client(QString msg)
 			
 			app.timer->start(500);
 			app.exec();
+			return;
 		}
 		if (get_content(msg) == "error") {
-			noti_label->setText("登录失败，请检查帐号密码");
-			
+			noti_label->setText(get_color_string("登录失败，请检查帐号密码", "red"));
+
 			QMessageBox box(QMessageBox::Warning, "失败", "登录失败，请检查帐号密码！");
 			box.setStandardButtons(QMessageBox::Ok | QMessageBox::Cancel);
 			box.setButtonText(QMessageBox::Ok, QString("确 定"));
 			box.setButtonText(QMessageBox::Cancel, QString("取 消"));
 			box.exec();
-			
+			return;
 		}
 
 		if (get_content(msg) == "again") {
-			noti_label->setText("登录失败，已经在其他地方登录");
+			noti_label->setText(get_color_string("登录失败，已经在其他地方登录", "red"));
 			QMessageBox box(QMessageBox::Warning, "失败", "登录失败，已经在其他地方登录！");
 			box.setStandardButtons(QMessageBox::Ok | QMessageBox::Cancel);
 			box.setButtonText(QMessageBox::Ok, QString("确 定"));
 			box.setButtonText(QMessageBox::Cancel, QString("取 消"));
 			box.exec();
-
+			return;
 		}
-		return;
+		qInfo("error:login msg");
 	}
 }

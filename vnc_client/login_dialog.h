@@ -10,30 +10,31 @@ class Login_dialog :public QDialog
 {
 	Q_OBJECT
 private:
+	QString id = "";
+	QString pw="";
+	QString address = "";
+	QString web_url="";
+	QString msg_ws_port = "";
+	QString msg_ws_url= "";
+	QString vnc_ws_port = "";
+	QString vnc_ws_url="";
+	Msg_client* p_msg_client;
+
 	QLineEdit *id_edit;
 	QLineEdit *pw_edit;
 	QPushButton *login_btn;
 	QRadioButton *remmber_btn;
 	QLabel *noti_label;
-	QString id;
-	QString pw;
-	QString url;
-	QString msg_port;
-	QString msg_url;
-	QString vnc_port;
-	QString vnc_url;
-	Msg_client* p_msg_client;
-
 public:
 	explicit Login_dialog(QWidget *parent = 0);
 	void set_msg_client(Msg_client *msg_client) {
 		this->p_msg_client = msg_client;
 	}
-	void init();
+	void read_config();
 	void write_config();
 	void login();
 	void connect_to_server() {
-		emit(to_connect(msg_url));
+		emit(to_connect(msg_ws_url));
 		noti_label->setText("连接服务器中....");
 	};
 	~Login_dialog() {};

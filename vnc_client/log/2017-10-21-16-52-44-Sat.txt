@@ -1,0 +1,7 @@
+Info: File:(main.cpp) Line:(27) (2017-10-21 16:52:47 Sat) program start
+Warning: File:(ssl\qsslsocket_openssl_symbols.cpp) Line:(125) (2017-10-21 16:53:13 Sat) QSslSocket: cannot call unresolved function d2i_DHparams
+Warning: File:(ssl\qsslsocket_openssl_symbols.cpp) Line:(125) (2017-10-21 16:53:13 Sat) QSslSocket: cannot call unresolved function DH_free
+Warning: File:(kernel\qobject.cpp) Line:(4739) (2017-10-21 16:53:22 Sat) QObject::connect: signal not found in QWebSocket
+Warning: File:(kernel\qobject.cpp) Line:(4739) (2017-10-21 16:53:31 Sat) QObject::connect: signal not found in Login_dialog
+Warning: File:(kernel\qobject.cpp) Line:(4739) (2017-10-21 16:53:36 Sat) QObject::connect: signal not found in QWebSocket
+Info: File:(app.cpp) Line:(603) (2017-10-21 16:53:52 Sat) 

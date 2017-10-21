@@ -46,7 +46,7 @@
       <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
     </ClCompile>
     <Link>
-      <SubSystem>Windows</SubSystem>
+      <SubSystem>Console</SubSystem>
       <OutputFile>$(OutDir)\$(ProjectName).exe</OutputFile>
       <AdditionalLibraryDirectories>$(QTDIR)\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -109,6 +109,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="grabber.cpp" />
+    <ClCompile Include="log.cpp" />
     <ClCompile Include="login_dialog.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="member.cpp" />
@@ -214,7 +215,9 @@
     <ClInclude Include="ffmpeg\include\libswscale\version.h" />
     <ClInclude Include="grabber.h" />
     <ClInclude Include="head.h" />
+    <ClInclude Include="log.h" />
     <ClInclude Include="parse.h" />
+    <ClInclude Include="resource.h" />
     <CustomBuild Include="vnc_app.h">
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Moc%27ing vnc_app.h...</Message>
@@ -284,6 +287,13 @@
     <Library Include="ffmpeg\lib\avcodec.lib" />
     <Library Include="ffmpeg\lib\avutil.lib" />
     <Library Include="ffmpeg\lib\swscale.lib" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="logo.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="LauncherIco.ico" />
+    <Image Include="logo.ico" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

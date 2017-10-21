@@ -70,7 +70,7 @@ Vnc_app::Vnc_app(QWidget *parent) :QObject(parent)
 }
 
 
-void Vnc_app::connect_login(QString id, QString pw, QString url)
+void Vnc_app::connect_login(QString id, QString pw, QString vnc_ws_url)
 {
 	this->id = id;
 	this->pw = pw;
@@ -79,7 +79,8 @@ void Vnc_app::connect_login(QString id, QString pw, QString url)
 	connect(&vnc_webSocket, &QWebSocket::abort, this, &Vnc_app::onClosed);
 	connect(&vnc_webSocket, &QWebSocket::binaryMessageReceived, this, &Vnc_app::onBinaryMessageReceived);
 	connect(&vnc_webSocket, &QWebSocket::textMessageReceived, this, &Vnc_app::onTextMessageReceived);
-	vnc_webSocket.open(QUrl(url));
+	vnc_webSocket.ignoreSslErrors();
+	vnc_webSocket.open(QUrl(vnc_ws_url));
 }
 
 
@@ -87,12 +88,13 @@ void Vnc_app::onClosed()
 {
 	this->is_run = false;
 	emit(to_app("connect;close"));
+	qInfo("vnc_app:closed");
 }
 
 
 void Vnc_app::onConnected()
 {
-	//·¢ËÍ¿ØÖÆÖ¡¸ñÊ½
+	//send jsmpeg_header_t
 	jsmpeg_header_t header = {
 		{ 'j','s','m','p' },
 		swap_int16(encoder->out_width), swap_int16(encoder->out_height)
@@ -102,11 +104,12 @@ void Vnc_app::onConnected()
 	memcpy(Bheader.data(), &header, sizeof(jsmpeg_header_t));
 	vnc_webSocket.sendBinaryMessage(Bheader);
 
-	//·¢ËÍÕÊºÅÃÜÂë
+	//send id and pw to confirm
 	vnc_webSocket.sendTextMessage(id.append(";").append(pw));
 	vnc_webSocket.flush();
 
 	emit(to_app("connect;pass"));
+	qInfo("vnc_app:connected");
 }
 
 void Vnc_app::onTextMessageReceived(QString message)
@@ -117,6 +120,7 @@ void Vnc_app::onTextMessageReceived(QString message)
 	if (message == "pass") {
 		emit(to_app("login;pass"));
 	}
+	qInfo(QString("vnc_app recvied text:").append(message).toStdString().c_str());
 }
 
 void Vnc_app::onBinaryMessageReceived(QByteArray message)
@@ -147,8 +151,6 @@ void Vnc_app::onBinaryMessageReceived(QByteArray message)
 	}
 	else if (type & input_type_mouse && len >= sizeof(input_mouse_t)) {
 		input_mouse_t *input = (input_mouse_t *)data;
-
-		//QMessageBox::information(this, QString("mouse"), QString("mouse£¡"), QMessageBox::NoButton);
 
 		if (type & input_type_mouse_absolute) {
 			POINT window_pos = { 0, 0 };
@@ -181,23 +183,24 @@ void Vnc_app::onBinaryMessageReceived(QByteArray message)
 			
 		}
 	}
+	qInfo(QString("vnc_app recvied binary:").append(message).toStdString().c_str());
 }
 
 
 DWORD WINAPI RunThread(LPVOID lpParameter)
 {
+	qInfo("vnc_app:start thread");
+
 	Vnc_app *vnc_app = (Vnc_app*)lpParameter;
 
 	jsmpeg_frame_t *frame = (jsmpeg_frame_t *)malloc(APP_FRAME_BUFFER_SIZE);
 	frame->type = jsmpeg_frame_type_video;
 	frame->size = 0;
 	char buf[APP_FRAME_BUFFER_SIZE];
-	double
-		fps = 60.0f,
-		wait_time = (1000.0f / vnc_app->target_fps) - 1.5f;
+	double fps = 60.0f;
+	double wait_time = (1000.0f / vnc_app->target_fps) - 1.5f;
 
 	timer_t *frame_timer = timer_create();
-
 
 	while (vnc_app->is_run) {
 		double delta = timer_delta(frame_timer);
@@ -226,6 +229,7 @@ DWORD WINAPI RunThread(LPVOID lpParameter)
 		Sleep(1);
 	}
 
+	qInfo("vnc_app:end thread");
 	timer_destroy(frame_timer);
 	free(frame);
 	return 0;
@@ -238,8 +242,10 @@ void Vnc_app::onRunStop(bool is_run)
 		this->is_run = true;
 		HANDLE hThread = NULL;
 		hThread = CreateThread(NULL, 0, RunThread, (LPVOID)this, 0, NULL);
+		qInfo("vnc_app:start to share");
 	}
 	else {
 		this->is_run = false;
+		qInfo("vnc_app:stop to share");
 	}
 }

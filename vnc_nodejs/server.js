@@ -1,15 +1,16 @@
 var mysql = require('mysql');
+const WebSocket= require('ws');
+
 var sql_connection = mysql.createConnection({
   host:'localhost',
   user:'root',
   password:'88068806a',
   database:'vnc'
 });
-
 sql_connection.connect(function(err) {
   if (err) {
-    console.error('mysql error connecting: ' + err.stack);
-    return;
+	console.error('mysql error connecting: ' + err.stack);
+	return;
   }
 
   console.log('mysql connected as id ' + sql_connection.threadId);
@@ -26,8 +27,6 @@ function get_content(msg){//获得内容
 	return msg.substring(index+1);
 }
 
-
-const WebSocket= require('ws');
 
 msg_server = new WebSocket.Server({port:5800}); 
 
@@ -141,7 +140,6 @@ msg_server.on('connection',function(ws) {
 	ws.id="";
 	ws.pw="";
 	ws.on('message',function(msg){
-		console.log(msg);
 		var fun=get_fun(msg);
 		var content=get_content(msg);
 		switch(fun)
@@ -218,9 +216,6 @@ msg_server.on('connection',function(ws) {
 							});
 						}
 						else{//密码验证失败
-							console.log('密码验证失败');
-							console.log(ws.id);
-							console.log(ws.pw);
 							ws.send("login;error");
 						}
 					}
@@ -255,7 +250,6 @@ vnc_server.on('connection', function(ws) {
 	ws.control_clients_id=new Set();
 	ws.on('message',function(msg){
 		if(ws.count==2){
-			
 			for(var i=0;i<ws.control_clients.length;i++)
 			{
 				try{
@@ -263,7 +257,6 @@ vnc_server.on('connection', function(ws) {
 				}
 				catch(err){
 				}
-				//console.log("发送数据");
 			}
 			
 			for(var i=0;i<ws.view_clients.length;i++)
@@ -273,7 +266,6 @@ vnc_server.on('connection', function(ws) {
 				}
 				catch(err){
 				}
-				//console.log("发送数据");
 			}
 			return;
 		}
@@ -297,6 +289,7 @@ vnc_server.on('connection', function(ws) {
 				ws.close();
 				console.log("vnc服务端"+ws.id+"连接失败");
 			}
+			
 		}
 	});
 });
@@ -316,7 +309,6 @@ client_listener.on('connection', function(ws) {
 	ws.id="";
 	ws.pw="";
 	ws.on('message',function(msg){
-		console.log(msg);
 		if(ws.count==1){
 			if(ws.way=="control"){//控制模式
 				try{
@@ -345,7 +337,6 @@ client_listener.on('connection', function(ws) {
 			ws.to_see_id=msg.substring(0,index);
 			ws.wss=is_exist_id(ws.to_see_id);
 			if(ws.wss==null){//不存在vnc服务
-				console
 				ws.send("error_access");
 				return;
 			}

@@ -2,6 +2,7 @@
 
 #pragma execution_character_set("utf-8")  
 
+#include <QApplication>
 #include <QtCore/QObject>
 #include <QDialog>
 #include <QLabel>
@@ -17,6 +18,11 @@
 #include <QDesktopServices>
 #include <QTextEdit>
 #include <QRadioButton>
+#include <QComboBox>
+#include <QSettings>
+#include <QFile>
+#include <QDir>
+#include <QMutex>
 
 #include <string>
 #include <fstream>

@@ -3,9 +3,11 @@
 #include "head.h"
 
 /*
-fun;content
+msgÎªfun;content¸ñÊ½
 */
 
 QString get_fun(QString msg);
 
 QString get_content(QString msg);
+
+QString get_color_string(QString str, QString color);

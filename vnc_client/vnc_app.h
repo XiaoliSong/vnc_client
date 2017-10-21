@@ -16,7 +16,7 @@ class Vnc_app : public QObject
 	Q_OBJECT
 public:
 	explicit Vnc_app(QWidget *parent = 0);
-	void connect_login(QString id,QString pw, QString url);
+	void connect_login(QString id,QString pw, QString vnc_ws_url);
 	QString id;
 	QString pw;
 	QWebSocket vnc_webSocket;

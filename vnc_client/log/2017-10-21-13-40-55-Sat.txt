@@ -1,0 +1,1 @@
+Info: File:(main.cpp) Line:(15) (2017-10-21 13:40:55 Sat) program start
