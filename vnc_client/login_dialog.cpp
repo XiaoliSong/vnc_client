@@ -3,41 +3,72 @@
 Login_dialog::Login_dialog(QWidget *parent) :QDialog(parent)
 {
 	id_edit = new QLineEdit(this);
-	id_edit->setPlaceholderText(QString("ÕËºÅ"));
-	id_edit->setStyleSheet("max-width:200px;height:30px;");
+	id_edit->setObjectName("id_edit");
 
 	pw_edit = new QLineEdit(this);
 	pw_edit->setEchoMode(QLineEdit::Password);
-	pw_edit->setPlaceholderText(QString("ÃÜÂë"));
-	pw_edit->setStyleSheet("max-width:200px;height:30px;");
+	pw_edit->setObjectName("pw_edit");
+
+	id_lable = new QLabel(this);
+	id_lable->setText(QString("ÕËºÅ£º"));
+	id_lable->setObjectName("id_lable");
+
+	pw_lable = new QLabel(this);
+	pw_lable->setText(QString("ÃÜÂë£º"));
+	pw_lable->setObjectName("pw_lable");
 
 	login_btn = new QPushButton(this);
-	login_btn->setObjectName(QStringLiteral("login_btn"));
+	login_btn->setDefault(false);
 	login_btn->setText(QString("µÇÂ¼"));
-	login_btn->setStyleSheet("max-width:100px;height:30px;");
 	login_btn->setDisabled(true);
+	login_btn->setObjectName("login_btn");
 
 	remmber_btn = new QRadioButton(this);
 	remmber_btn->setText(QString("¼Ç×¡ÃÜÂë"));
+	remmber_btn->setObjectName("remmber_btn");
+
+	reg_btn = new QPushButton(this);
+	reg_btn->setText(QString("×¢²áÕËºÅ"));
+	reg_btn->setDefault(false);
+	reg_btn->setObjectName("reg_btn");
+
+	change_pw_btn = new QPushButton(this);
+	change_pw_btn->setText(QString("ÐÞ¸ÄÃÜÂë"));
+	change_pw_btn->setDefault(false);
+	change_pw_btn->setObjectName("change_pw_btn");
 
 	noti_label = new QLabel(this);
 	noti_label->setText(get_color_string("Î´Á¬½Ó·þÎñÆ÷","red"));
+	noti_label->setObjectName("noti_label");
 
 	QGridLayout *layout = new QGridLayout(this);
-	layout->setSpacing(30);
+
+	for (int i = 0; i < 6; i++)
+	{
+		layout->setColumnMinimumWidth(i, 40);
+	}
+	layout->setHorizontalSpacing(10);
+	layout->setVerticalSpacing(20);
 	layout->setAlignment(Qt::AlignCenter);
-	layout->addWidget(id_edit, 0, 0, 1, 4);
-	layout->addWidget(pw_edit, 1, 0, 1, 4);
-	layout->addWidget(login_btn, 3, 1, 1, 2);
-	layout->addWidget(remmber_btn, 4, 1, 1, 2);
-	layout->addWidget(noti_label, 5, 1, 1, 2);
+	layout->addWidget(id_lable, 0, 0, 1, 2, Qt::AlignRight);
+	layout->addWidget(id_edit, 0, 2, 1, 4, Qt::AlignCenter);
+	layout->addWidget(reg_btn, 0, 6, 1, 2, Qt::AlignLeft);
+	layout->addWidget(pw_lable, 1, 0, 1, 2, Qt::AlignRight);
+	layout->addWidget(pw_edit, 1, 2, 1, 4, Qt::AlignCenter);
+	layout->addWidget(change_pw_btn, 1, 6, 1, 2, Qt::AlignLeft);
+	layout->addWidget(login_btn, 3, 2, 1, 4, Qt::AlignCenter);
+	layout->addWidget(remmber_btn, 4,2 , 1, 4,Qt::AlignCenter);
+	layout->addWidget(noti_label, 5, 0, 1, 8, Qt::AlignCenter);
 
 	this->setLayout(layout);
-	this->setMinimumSize(400, 280);
+	this->setFixedSize(400, 300);
+	this->setObjectName("login_dialog");
 	this->setWindowTitle(QString("µÇÂ¼"));
 	this->setWindowFlags(Qt::CustomizeWindowHint | Qt::WindowCloseButtonHint | Qt::WindowMinimizeButtonHint);
 
 	connect(login_btn, &QPushButton::clicked, this, &Login_dialog::login);
+	connect(reg_btn, &QPushButton::clicked, this, &Login_dialog::reg);
+	connect(change_pw_btn, &QPushButton::clicked, this, &Login_dialog::change_pw);
 }
 
 void Login_dialog::read_config()
@@ -132,6 +163,15 @@ void Login_dialog::login()
 	qInfo("login is called successfully");
 }
 
+void Login_dialog::reg()
+{
+	QDesktopServices::openUrl(web_url+"/reg.html");
+}
+
+void Login_dialog::change_pw()
+{
+	QDesktopServices::openUrl(web_url + "/change_pw.html");
+}
 
 void Login_dialog::on_msg_client(QString msg)
 {

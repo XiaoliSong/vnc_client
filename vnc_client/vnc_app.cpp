@@ -212,7 +212,6 @@ DWORD WINAPI RunThread(LPVOID lpParameter)
 			double grab_time = timer_measure(grab_time) {
 				pixels = grabber_grab(vnc_app->grabber);
 			}
-
 			double encode_time = timer_measure(encode_time) {
 				size_t encoded_size = APP_FRAME_BUFFER_SIZE - sizeof(jsmpeg_frame_t);
 				encoder_encode(vnc_app->encoder, pixels, frame->data, &encoded_size);

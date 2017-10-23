@@ -23,7 +23,7 @@ public:
 	bool is_run = false;
 	encoder_t *encoder;
 	grabber_t *grabber;
-	int target_fps;
+	int target_fps=60;
 	int bit_rate=0;
 	int out_width;
 	int out_height;

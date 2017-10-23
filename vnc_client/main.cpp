@@ -20,6 +20,15 @@ int main(int argc, char *argv[])
 		}
 	}
 
+	QFile qssFile("style.qss");//资源文件":/css.qss"
+	qssFile.open(QFile::ReadOnly);
+	if (qssFile.isOpen())
+	{
+		QString css = QLatin1String(qssFile.readAll());
+		app.setStyleSheet(css);
+		qssFile.close();
+	}
+
 	log_file_name = QDateTime::currentDateTime().toString("yyyy-MM-dd-hh-mm-ss-ddd").append(".txt").prepend("./log/");
 	
 	qInstallMessageHandler(log_msg);

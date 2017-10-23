@@ -1,29 +1,3 @@
-﻿  Uic'ing vnc_client.ui...
-  Moc'ing vnc_app.h...
-  Moc'ing msg_client.h...
-  Moc'ing member.h...
-  Moc'ing login_dialog.h...
-  Moc'ing app.h...
-  Rcc'ing vnc_client.qrc...
-RCC : warning : No resources in 'F:\Study\缂栫▼\QtVnc\vnc_client\vnc_client\vnc_client.qrc'.
-  
-  app.cpp
-  encoder.cpp
-  moc_app.cpp
-  moc_login_dialog.cpp
-  moc_member.cpp
-  moc_msg_client.cpp
-  moc_vnc_app.cpp
-  grabber.cpp
-  log.cpp
-  login_dialog.cpp
-  main.cpp
-  member.cpp
-  msg_client.cpp
-  parse.cpp
-  timer.cpp
-  vnc_app.cpp
+﻿  vnc_app.cpp
 vnc_app.cpp(101): warning C4838: 从“int”转换到“unsigned short”需要收缩转换
-  正在生成代码...
-  qrc_vnc_client.cpp
   vnc_client.vcxproj -> F:\Study\编程\QtVnc\vnc_client\Win32\Release\vnc_client.exe

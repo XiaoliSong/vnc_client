@@ -1,0 +1,50 @@
+QLineEdit#id_edit{
+	width:150px;
+	height:28px;
+}
+
+QLineEdit#pw_edit{
+	width:150px;
+	height:28px;
+}
+
+QPushButton#reg_btn{
+	color:blue;
+    background-color:transparent;
+}
+
+QPushButton#reg_btn:hover{
+    color:rgb(97,79,246);
+}
+
+QPushButton#reg_btn:pressed{
+    color:rgb(0,109,176);
+}
+
+QPushButton#change_pw_btn{
+	color:blue;
+    background-color:transparent;
+}
+QPushButton#change_pw_btn:hover{
+    color:rgb(97,79,246);
+}
+
+QPushButton#change_pw_btn:pressed{
+    color:rgb(0,109,176);
+}
+
+QPushButton#login_btn{
+	width:100px;
+	height:28px;
+}
+QPushButton#login_btn:hover{
+	color:red;
+}
+
+QRadioButton#remmber_btn{
+	height:28px;
+}
+
+QLabel#noti_label{
+	height:28px;
+}

@@ -20,9 +20,13 @@ private:
 	QString vnc_ws_url="";
 	Msg_client* p_msg_client;
 
+	QLabel *id_lable;
+	QLabel *pw_lable;
 	QLineEdit *id_edit;
 	QLineEdit *pw_edit;
 	QPushButton *login_btn;
+	QPushButton *reg_btn;
+	QPushButton *change_pw_btn;
 	QRadioButton *remmber_btn;
 	QLabel *noti_label;
 public:
@@ -33,6 +37,8 @@ public:
 	void read_config();
 	void write_config();
 	void login();
+	void change_pw();
+	void reg();
 	void connect_to_server() {
 		emit(to_connect(msg_ws_url));
 		noti_label->setText("连接服务器中....");
